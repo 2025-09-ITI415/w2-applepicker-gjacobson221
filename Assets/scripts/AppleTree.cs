@@ -13,7 +13,7 @@ public class AppleTree : MonoBehaviour
     public float leftAndRightEdge = 20f;
 
     //chance that the appleTree will change direction
-    public float chanceToChangeDirection = 0.1f;
+    public float chanceToChangeDirection = 0.01f;
 
     //rate at which apples will be instantiated
     public float secondsBetweenAppleDrops = 1f;
@@ -35,15 +35,18 @@ public class AppleTree : MonoBehaviour
         pos.x += speed * Time.deltaTime;
         transform.position = pos;
         //changing direction
-        if (pos.x < leftAndRightEdge)
+        if (pos.x < -leftAndRightEdge)
         {
             speed = Mathf.Abs(speed); //move right
         }
         else if (pos.x > leftAndRightEdge)
         {
-            speed = Mathf.Abs(speed); //move left
+            speed = -Mathf.Abs(speed); //move left
         }
-        else if (Random.value < chanceToChangeDirection)
+    }
+    void FixedUpdate()
+    {
+        if (Random.value < chanceToChangeDirection * Time.fixedDeltaTime)
         {
             speed *= -1; //change direction
         }

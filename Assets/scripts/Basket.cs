@@ -1,11 +1,20 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
 
 public class Basket : MonoBehaviour
 {
+    public Text scoreText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //find a reference to the scorecounter GameObject
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        //get the guitext component of that gameobject
+        scoreText = scoreGO.GetComponent<Text>();
+        //set the starting number of points to 0
+        scoreText.text = "0";
     }
 
     // Update is called once per frame
@@ -31,6 +40,18 @@ public class Basket : MonoBehaviour
         GameObject collidedWith = coll.gameObject;
         if (collidedWith.tag == "Apple") {
             Destroy(collidedWith);
+        }
+        //parse the text of the scoreGT into an int
+        int score = int.Parse(scoreText.text);
+        //add points for catching the apple
+        score += 100;
+        //convert the score back to a string and display it
+        scoreText.text = score.ToString();
+
+        //track the high score
+        if (score > HighScore.score)
+        {
+            HighScore.score = score;
         }
     }
 }

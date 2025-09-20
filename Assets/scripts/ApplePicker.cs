@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 public class ApplePicker : MonoBehaviour
 {
     public GameObject basketPrefab;
@@ -20,6 +22,7 @@ public class ApplePicker : MonoBehaviour
             Vector3 pos = Vector3.zero;
             pos.y = basketBottomY + (basketSpacingY * i);
             tBasketGO.transform.position = pos;
+            basketList.Add(tBasketGO);
         }
     }
     public void AppleDestroyed()
@@ -38,6 +41,12 @@ public class ApplePicker : MonoBehaviour
         //remove the basket from the list and destroy the gameobject
         basketList.RemoveAt(BasketIndex);
         Destroy(tBasketGO);
+
+        //restart the game, which wont affect highscore
+        if (basketList.Count == 0)
+        {
+            SceneManager.LoadScene("_Scene_0");
+        }
     }
         // Update is called once per frame
         void Update()

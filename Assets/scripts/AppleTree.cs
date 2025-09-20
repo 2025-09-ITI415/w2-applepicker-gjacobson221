@@ -13,7 +13,7 @@ public class AppleTree : MonoBehaviour
     public float leftAndRightEdge = 20f;
 
     //chance that the appleTree will change direction
-    public float chanceToChangeDirection = 0.01f;
+    public float chanceToChangeDirection = 0.10f;
 
     //rate at which apples will be instantiated
     public float secondsBetweenAppleDrops = 1f;

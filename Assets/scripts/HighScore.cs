@@ -1,36 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class HighScore : MonoBehaviour
 {
-    public static int score = 1000;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public static int score = 0;
+    private Text highScoreText;
+
     void Awake()
     {
-        //if the applepickerhighscore already exists, read it
-        if (PlayerPrefs.HasKey("ApplePickerHighScore"))
-        {
-            score = PlayerPrefs.GetInt("ApplePickerHighScore");
-        }
-        //assign the high score to the applepickerhighscore
-        PlayerPrefs.SetInt("ApplePickerHighScore", score);
+        // Get the Text component once
+        highScoreText = GetComponent<Text>();
+
+        // Load saved high score if it exists
+        if (PlayerPrefs.HasKey("HighScore"))
+            score = PlayerPrefs.GetInt("HighScore");
+
+        // Update the text immediately
+        highScoreText.text = "High Score: " + score.ToString();
     }
-    // Update is called once per frame
+
     void Update()
     {
-        Text highScoreText = this.GetComponent<Text>();
-            highScoreText.text = "High Score: " + score;
+        // Update the UI text to reflect the current high score
+        highScoreText.text = "High Score: " + score;
 
-        //update applepickerhighscore in playerprefs in necessary
-        if (score > PlayerPrefs.GetInt("ApplePickerHighScore"))
-        {
-            PlayerPrefs.SetInt("ApplePickerHighScore", score);
-        }
+        // Save the high score to PlayerPrefs if needed
+        PlayerPrefs.SetInt("HighScore", score);
     }
 }

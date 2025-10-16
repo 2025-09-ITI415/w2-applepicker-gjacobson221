@@ -52,6 +52,7 @@ public class Basket : MonoBehaviour
         if (score > HighScore.score)
         {
             HighScore.score = score;
+            Debug.Log("New High Score set! HighScore.score = " + HighScore.score);
         }
     }
 }

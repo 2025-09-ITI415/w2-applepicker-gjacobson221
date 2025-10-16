@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe20cc977d38c043bf9adb6a06873ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 4319613637064774828, guid: bcde1af3d6a1a5a48b3ab475e0f8b4f5, type: 3}
+  scoreText: {fileID: 4031745699785244399, guid: ee037158cf33a6743887db368b7b5da7, type: 3}
